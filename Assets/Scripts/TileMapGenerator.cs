@@ -10,12 +10,11 @@ public class TileMapGenerator : MonoBehaviour
     public Tile[] bottomTiles;
     public int mapSizeX = 10;
     public int mapSizeY = 10;
-    public int minHeight = 1;
-    public int maxHeight = 5;
+    public float scale = 10f;
 
     private Tilemap tilemap;
 
-    void Start()
+    void Update()
     {
         tilemap = GetComponent<Tilemap>();
         GenerateMap();
@@ -25,24 +24,28 @@ public class TileMapGenerator : MonoBehaviour
     {
         for (int x = 0; x < mapSizeX; x++)
         {
-            int columnHeight = Random.Range(minHeight, maxHeight + 1);
+            int stoneDepth = Random.Range(10, (mapSizeY / 3)+10);
+            int grassLevel = (int)((mapSizeY-(mapSizeY/3)) + Random.Range(-1,1));
+            int mudDepth = grassLevel - stoneDepth;
+
             for (int y = 0; y < mapSizeY; y++)
             {
                 Tile tile = null;
-                if (y == mapSizeY - 1)
-                {
-                    tile = topTiles[Random.Range(0, topTiles.Length)];
-                }
-                else if (y == 0)
+                if (y < stoneDepth)
                 {
                     tile = bottomTiles[Random.Range(0, bottomTiles.Length)];
                 }
-                else if (y >= mapSizeY - columnHeight)
+                else if (y < grassLevel)
                 {
                     tile = middleTiles[Random.Range(0, middleTiles.Length)];
+                }
+                else if (y == grassLevel)
+                {
+                    tile = topTiles[Random.Range(0, topTiles.Length)];
                 }
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
     }
 }
+
