@@ -42,6 +42,13 @@ public class PlayerMovement : MonoBehaviour{
         movement = new Vector2(movement.x*moveSpeed,movement.y*jumpHeight);
         movement *= Time.deltaTime;
         transform.Translate(movement);
+        if (movement.x < 0) {
+            GetComponent<SpriteRenderer>().flipX = true; 
+        }
+        if (movement.x > 0) {
+            GetComponent<SpriteRenderer>().flipX = false; 
+        }
+
     }
 
 }
