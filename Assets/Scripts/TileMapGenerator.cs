@@ -10,7 +10,7 @@ public class TileMapGenerator : MonoBehaviour
     public Tile[] bottomTiles;
     public int mapSizeX = 10;
     public int mapSizeY = 10;
-    public float scale = 10f;
+    public int WalkMin = 2;
 
     private Tilemap tilemap;
 
@@ -21,8 +21,9 @@ public class TileMapGenerator : MonoBehaviour
     }
 
     void GenerateMap()
-    {
-        int stoneDepth = Random.Range(20, (mapSizeY / 3)+40);
+    {   
+        int WalkNo = 0;
+        int stoneDepth = Random.Range((mapSizeY/3), (mapSizeY/2)-10);
         int prevGrassLevel = 0;
         int grassLevel = (int)((mapSizeY-(mapSizeY/5)));
 
@@ -30,17 +31,31 @@ public class TileMapGenerator : MonoBehaviour
         {
             int prevStoneDepth = stoneDepth + Random.Range(-4,4);
             
-            int mudDepth = grassLevel - stoneDepth;
-
-            int nextmove = Random.Range(0,1);
-            if (nextmove == 0 && prevGrassLevel > (int)(mapSizeY-(mapSizeY/5))){
-                grassLevel -- ;
-            }
-            else{
-                grassLevel ++;
+            int mudDepth = grassLevel - prevStoneDepth;
+            if (mudDepth > (mapSizeY/3)){
+                mudDepth = (mapSizeY/3);
             }
 
+            if (prevStoneDepth > (mapSizeY/2)){
+                prevStoneDepth = (mapSizeY/2)-10;
+            }
+            if ((WalkNo % WalkMin) == 0){
+                int nextmove = Random.Range(0,100);
+                if (nextmove < 33){
+                    grassLevel -- ;
+                }
+                else if (nextmove > 33 && nextmove < 66){
+                    grassLevel ++;
+                }
+                else{
+                    grassLevel = prevGrassLevel;
+                }
 
+                if (grassLevel > mapSizeY){
+                    mapSizeY = (mapSizeY+grassLevel);
+                }
+            }
+                WalkNo ++;
             for (int y = 0; y < mapSizeY; y++)
             {
                 Tile tile = null;
@@ -70,10 +85,7 @@ public class TileMapGenerator : MonoBehaviour
                 }
                 else if (y == grassLevel)
                 {   
-
-                        
-                    tile = topTiles[0];
-                    
+                    tile = topTiles[0];            
                 }
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);
                 
