@@ -8,13 +8,13 @@ public class TileMapGenerator : MonoBehaviour
     public Tile[] topTiles;
     public Tile[] middleTiles;
     public Tile[] bottomTiles;
-    public int mapSizeX = 10;
-    public int mapSizeY = 10;
-    public int WalkMin = 2;
+    public int mapSizeX = 100;
+    public int mapSizeY = 100;
+    public int WalkMin = 3;
 
     private Tilemap tilemap;
 
-    void Start()
+    void Update()
     {
         tilemap = GetComponent<Tilemap>();
         GenerateMap();
@@ -33,11 +33,11 @@ public class TileMapGenerator : MonoBehaviour
             
             int mudDepth = grassLevel - prevStoneDepth;
             if (mudDepth > (mapSizeY/3)){
-                mudDepth = (mapSizeY/3);
+                mudDepth = (int)(mapSizeY/3);
             }
 
             if (prevStoneDepth > (mapSizeY/2)){
-                prevStoneDepth = (mapSizeY/2)-10;
+                prevStoneDepth = (int)(mapSizeY/2)-10;
             }
             if ((WalkNo % WalkMin) == 0){
                 int nextmove = Random.Range(0,100);
@@ -81,7 +81,7 @@ public class TileMapGenerator : MonoBehaviour
                 }
                 else if (y < grassLevel )
                 {   
-                    tile = middleTiles[Random.Range(0, middleTiles.Length)];
+                    tile = middleTiles[0];
                 }
                 else if (y == grassLevel)
                 {   

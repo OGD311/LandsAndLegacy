@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 124461598}
   - component: {fileID: 124461599}
   - component: {fileID: 124461601}
-  - component: {fileID: 124461602}
   - component: {fileID: 124461603}
   - component: {fileID: 124461604}
+  - component: {fileID: 124461605}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -153,8 +153,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124461596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 20, y: 80, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 519420032}
@@ -207,7 +207,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.6666667, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -249,23 +249,6 @@ MonoBehaviour:
   red: 1
   green: 1
   blue: 1
---- !u!114 &124461602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124461596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1b4d5ef27234ecc8c10e03f3d6e0c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  jumpHeight: 6
-  RigidBody: {fileID: 124461599}
-  direction: {x: 0, y: 0}
-  ColliderHeight: 1
 --- !u!61 &124461603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,7 +267,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.6666667, y: 1}
-    newSize: {x: 1, y: 2}
+    newSize: {x: 0.6666667, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -301,12 +284,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 124461596}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1b4d5ef27234ecc8c10e03f3d6e0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  jumpHeight: 10
+  RigidBody: {fileID: 124461599}
+  direction: {x: 0, y: 0}
+  ColliderHeight: 6
+--- !u!114 &124461605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124461596}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f335c1ef87ae74c099867d34459e532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeTiles:
+  WorldTiles:
   - {fileID: 11400000, guid: 97fbbbd40ca034b2c8b65e7a44c44ba3, type: 2}
-  tileMap: {fileID: 704273998}
+  - {fileID: 11400000, guid: 718867447d7164c7fa7a4fbcbc1a6a01, type: 2}
+  - {fileID: 11400000, guid: 5fc806486352c40ecb9b76ef1bb38b96, type: 2}
+  - {fileID: 11400000, guid: 4f49eb642821b41ec9150b532e79648c, type: 2}
+  - {fileID: 11400000, guid: e62bb8729f98d44459fbb1794fd94b17, type: 2}
+  - {fileID: 11400000, guid: 627e02860272b44f09ea6466f8ccbeb3, type: 2}
+  - {fileID: 11400000, guid: 5fe3356fd7a3c4c619f90de2c8f612d4, type: 2}
+  block: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +366,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -470,7 +476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603286466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.6, y: 8.7, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -550,7 +556,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631807679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -570,8 +576,8 @@ GameObject:
   - component: {fileID: 704273994}
   - component: {fileID: 704273998}
   - component: {fileID: 704273997}
-  - component: {fileID: 704273996}
   - component: {fileID: 704273995}
+  - component: {fileID: 704274000}
   m_Layer: 0
   m_Name: Landscape
   m_TagString: Untagged
@@ -587,8 +593,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704273993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -100, z: 0}
-  m_LocalScale: {x: 0.33333, y: 0.33333, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 631807681}
@@ -610,33 +616,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &704273996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704273993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46fc535378fa4505a5a02082b3e50e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topTiles:
-  - {fileID: 11400000, guid: 5fc806486352c40ecb9b76ef1bb38b96, type: 2}
-  - {fileID: 11400000, guid: 6bc2a9982a3fd48d1884a3a230413c85, type: 2}
-  - {fileID: 11400000, guid: 3a2db76b8dbae450d8d44aec641411be, type: 2}
-  middleTiles:
-  - {fileID: 11400000, guid: 718867447d7164c7fa7a4fbcbc1a6a01, type: 2}
-  bottomTiles:
-  - {fileID: 11400000, guid: 97fbbbd40ca034b2c8b65e7a44c44ba3, type: 2}
-  - {fileID: 11400000, guid: 4f49eb642821b41ec9150b532e79648c, type: 2}
-  - {fileID: 11400000, guid: e62bb8729f98d44459fbb1794fd94b17, type: 2}
-  - {fileID: 11400000, guid: 627e02860272b44f09ea6466f8ccbeb3, type: 2}
-  - {fileID: 11400000, guid: 5fe3356fd7a3c4c619f90de2c8f612d4, type: 2}
-  mapSizeX: 100
-  mapSizeY: 20
-  WalkMin: 4
 --- !u!483693784 &704273997
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -724,6 +703,35 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &704274000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704273993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cec108f986c7dd4e8fabc14eee2f594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 1000
+  height: 75
+  WorldTiles:
+  - {fileID: 11400000, guid: 97fbbbd40ca034b2c8b65e7a44c44ba3, type: 2}
+  - {fileID: 11400000, guid: 718867447d7164c7fa7a4fbcbc1a6a01, type: 2}
+  - {fileID: 11400000, guid: 5fc806486352c40ecb9b76ef1bb38b96, type: 2}
+  - {fileID: 11400000, guid: 4f49eb642821b41ec9150b532e79648c, type: 2}
+  - {fileID: 11400000, guid: e62bb8729f98d44459fbb1794fd94b17, type: 2}
+  - {fileID: 11400000, guid: 627e02860272b44f09ea6466f8ccbeb3, type: 2}
+  - {fileID: 11400000, guid: 5fe3356fd7a3c4c619f90de2c8f612d4, type: 2}
+  - {fileID: 11400000, guid: 3f44207ce4833ad4eaaf197f5f2e913c, type: 2}
+  - {fileID: 11400000, guid: b3a46f32b52310541b408411cd1a3450, type: 2}
+  - {fileID: 11400000, guid: f064533d5ded03142abca76126252c91, type: 2}
+  Tilemap: {fileID: 704273998}
+  WalkMin: 3
+  block: 0
+  PlayerCharacter: {fileID: 0}
 --- !u!1 &1555276421
 GameObject:
   m_ObjectHideFlags: 0
