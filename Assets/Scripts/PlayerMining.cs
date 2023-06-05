@@ -11,6 +11,9 @@ public class PlayerMining : MonoBehaviour
         print(Input.mousePosition.x);
         print(worldPoint.x+" "+worldPoint.y);
         map[worldPoint.x,worldPoint.y] = -1;
+        if (map[worldPoint.x,worldPoint.y+1] == 3){
+            map[worldPoint.x,worldPoint.y+1] = -1;
+            }
         WorldGenerator.UpdateMap(map,Tilemap,tiles);
     }
 
@@ -52,10 +55,14 @@ public class PlayerMining : MonoBehaviour
             }
         }
         else if (Input.GetMouseButtonDown(0)){
+            int[,] world = GameObject.Find("Landscape").GetComponent<WorldGenerator>().world;
+            Tilemap Tilemap = GameObject.Find("Landscape").GetComponent<WorldGenerator>().Tilemap;
             breakBlock(world,Tilemap,WorldTiles);
             
         }
         else if (Input.GetMouseButtonDown(1)){
+            int[,] world = GameObject.Find("Landscape").GetComponent<WorldGenerator>().world;
+            Tilemap Tilemap = GameObject.Find("Landscape").GetComponent<WorldGenerator>().Tilemap;
             placeBlock(world, block, Tilemap, WorldTiles);
             
         }

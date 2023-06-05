@@ -176,6 +176,7 @@ public class WorldGenerator : MonoBehaviour{
     public int WalkMin = 3;
 
     void Start(){
+        
         while (true == true){
         try{
         world = GenerateArray(width, height, false, WalkMin);
@@ -208,69 +209,4 @@ public class WorldGenerator : MonoBehaviour{
        // UpdateMap(world, Tilemap);
     }
 
-
-    //Player mining
-    public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] tiles) {
-        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var worldPoint = new Vector3Int((int)(mousePoint.x), (int)(mousePoint.y),0);
-        Vector3Int cellposition = Tilemap.WorldToCell(worldPoint);
-        map[cellposition.x,cellposition.y] = -1;
-        print(worldPoint.x+" "+worldPoint.y);
-        UpdateMap(map,Tilemap,tiles);
-    }
-
-    public static void placeBlock(int[,] map, int block, Tilemap Tilemap, Tile[] tiles){
-        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var worldPoint = new Vector3Int((int)(mousePoint.x), (int)(mousePoint.y),0);
-        Vector3Int cellposition = Tilemap.WorldToCell(worldPoint);
-        if (map[cellposition.x,cellposition.y] == -1){
-            map[cellposition.x,cellposition.y] = block;
-        }
-        else{
-            print("Cannot place - block already there");
-        }
-        
-        print(worldPoint.x+" "+worldPoint.y);
-        print(cellposition.x+" "+cellposition.y);
-        UpdateMap(map,Tilemap,tiles);
-    }
-
-    public int block = 0;
-    public GameObject PlayerCharacter; 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0){
-            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.GetUpperBound(0)){
-                if (block == WorldTiles.GetUpperBound(0)){
-                    block = 0;
-                }
-                else{
-                    block ++;
-                }
-                
-                print(WorldTiles[block]+" "+block);
-            }
-            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0 && block > 0){
-               /* if (block < 0){
-                    block = (WorldTiles.GetUpperBound(0)-1);
-                }
-                else{*/
-                    block --;  
-               // }
-
-                print(WorldTiles[block]+" "+block);
-                
-            }
-        }
-        else if (Input.GetMouseButtonDown(0)){
-            breakBlock(world,Tilemap,WorldTiles);
-            
-        }
-        else if (Input.GetMouseButtonDown(1)){
-            placeBlock(world, block, Tilemap, WorldTiles);
-            
-        }
-    }
 }
