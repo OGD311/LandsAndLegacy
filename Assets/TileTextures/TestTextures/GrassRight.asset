@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Wood
+  m_Name: GrassRight
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 5d1cdb63bf2725f47936ad85aa1659c1, type: 3}
-  m_Color: {r: 0.6603774, g: 0.5751966, b: 0.50089, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 44748ce813bb2fc45af97a41ba535d29, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

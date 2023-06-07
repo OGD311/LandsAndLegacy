@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour{
 
 
     //Update called once per frame
-    void Update () {
+    void Update () {   
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
 
         movement.x = Input.GetAxisRaw("Horizontal");

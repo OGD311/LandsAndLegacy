@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SeedGenerator : MonoBehaviour
 {
     public string pubseed;
     private string seedconv = "";
-    public long seed;
+    public ulong seed;
     public bool regen = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {   
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,12 +26,11 @@ public class SeedGenerator : MonoBehaviour
     void genseed()
     {
         //Player chosen seed -> limited to 15 ints long
-
         if (pubseed.Length != 0){
             
-            if (pubseed.Length > 5){
-                for (int i = 0; i <= 5; i++){
-                    pubseed = pubseed.Substring(0,5);
+            if (pubseed.Length > 6){
+                for (int i = 0; i <= 6; i++){
+                    pubseed = pubseed.Substring(0,6);
                 }
             }
 
@@ -53,7 +46,7 @@ public class SeedGenerator : MonoBehaviour
 
 
 
-            seed = long.Parse(seedconv);
+            seed = ulong.Parse(seedconv);
 
             print(seed);
         }
@@ -65,7 +58,13 @@ public class SeedGenerator : MonoBehaviour
                 seedconv = seedconv + (int)(Random.value*1000);
             }
 
-            seed = long.Parse(seedconv);
+            if (seedconv.Length < 15){
+                    while (seedconv.Length < 15){
+                        seedconv = seedconv + (int)(Random.value*1000);
+                    }
+                }
+
+            seed = ulong.Parse(seedconv);
 
             print(seed);
         }
@@ -73,5 +72,3 @@ public class SeedGenerator : MonoBehaviour
         
     }
 }
-
-
