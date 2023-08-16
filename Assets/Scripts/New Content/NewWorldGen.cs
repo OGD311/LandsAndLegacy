@@ -41,20 +41,40 @@ public class NewWorldGen : MonoBehaviour
 
     }
 
-    public static void GenerateBasicTerrain(int[,] map, Tilemap tilemap, Tile[] tiles){
-    int baseheight = map.GetUpperBound(1) - ((int)(map.GetUpperBound(1) / 10));
+    public static void GenerateTerrainPerlin(int[,] map){
+        int baseheight = map.GetUpperBound(1) - ((int)(map.GetUpperBound(1) / 5));
 
-    for (int x = 0; x < map.GetUpperBound(0); x++){
-        float ranx = Random.value;
-        float rany = Random.value;
-        float terrain = Mathf.PerlinNoise(ranx, rany);
-        int mapheight = baseheight + (int)(terrain * 10);
+        
+        for (int x = 0; x < map.GetUpperBound(0); x++){
+            float ranx = Random.value;
+            float rany = Random.value;
+            float terrain = Mathf.PerlinNoise(ranx,rany);
+            int mapheight = (int)(terrain * 50);
 
-        for (int y = 0; y < mapheight + 1; y++){
-            map[x, y] = 1;
+            for (int y = 0; y < mapheight + 1; y++){
+                map[x, y] = 1;
+            }
         }
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,6 +136,14 @@ public class NewWorldGen : MonoBehaviour
     
     public int worldSize;
 
+    public float roughness = 0.5f; // Roughness factor controls the level of detail in the terrain
+    public int minGroundHeight = 20; // Minimum height for the ground
+    public int maxGroundHeight = 80; // Maximum height for the ground
+
+
+
+
+
 
     void Start()
     {
@@ -123,7 +151,8 @@ public class NewWorldGen : MonoBehaviour
         Random.InitState((int) Gameseed);
 
         world = GenerateArray(worldSize);
-        GenerateBasicTerrain(world, Tilemap, WorldTiles);
+        GenerateTerrainPerlin(world);
+        
         RenderMap(world, Tilemap, WorldTiles);
             
     }
