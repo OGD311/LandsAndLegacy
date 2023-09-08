@@ -1,6 +1,5 @@
 # Lands and Legacy
 ## No Adventures the Same...
-### Features:
 * Procedurally Generated Worlds
 * Crafting System
 * Multiplayer
@@ -10,7 +9,7 @@
 
 
 
-##Features as of 8/9/2023:
+## Features as of 8/9/2023:
 - [x] Procedurally Generated World
 - [x] Cave Generation
 - [ ] Biome Generation
