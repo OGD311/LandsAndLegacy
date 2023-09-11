@@ -12,16 +12,16 @@
 ## Features as of 8/9/2023:
 * ✅ Procedurally Generated World
 * ✅ Cave Generation
-* ❌ Biome Generation
+* ✴️ Biome Generation
 * ❌ Ore Generation
-
+󠁾
 * ✅ Player Ground Movement
 * ❌ Player Water Movement
 
 * ❌ Crafting
 * ❌ Smelting
 
-* ✅ Building
+* ✴️ Building
 * ❌ Farming
 
 * ❌ Local Multiplayer
