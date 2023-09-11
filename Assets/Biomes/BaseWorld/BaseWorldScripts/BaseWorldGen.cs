@@ -27,9 +27,9 @@ public class BaseWorldGen : MonoBehaviour {
     public static int[,] GenerateGrass(int[,] map){
         bool Placed = false;
         for (int x = 0; x < map.GetUpperBound(0); x++){
-            for (int y = 1; y < map.GetUpperBound(1)-1; y++){
+            for (int y = map.GetUpperBound(1)/5; y < map.GetUpperBound(1)-1; y++){
 
-                if ((map[x,y-1] != -1) && (map[x,y-1] == 1) && (map[x,y+1] == -1) && (Placed == false)){
+                if ((map[x,y-1] != -1) && (map[x,y-1] == 1) && (map[x,y+1] == -1)){
                     map[x,y] = 3;
                     Placed = true;
                 }

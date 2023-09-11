@@ -356,8 +356,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f30179fec672c446b527159deb0c7b8, type: 2}
   - {fileID: 11400000, guid: f95540563b04cc344b2a321e13a8e291, type: 2}
   - {fileID: 11400000, guid: a6c56985ada224e4494fe9158f8804fb, type: 2}
+  PlayerSeed: 
+  Seed: 0
   GenBorders: 0
-  scale: 20
+  Desert: 0
+  Regen: 0
 --- !u!114 &404877198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,9 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c338609d97911b342b06f85e011ad24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pubseed: 
-  seed: 0
-  regen: 1
 --- !u!483693784 &404877199
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -729,8 +729,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f30179fec672c446b527159deb0c7b8, type: 2}
   - {fileID: 11400000, guid: f95540563b04cc344b2a321e13a8e291, type: 2}
   - {fileID: 11400000, guid: a6c56985ada224e4494fe9158f8804fb, type: 2}
+  - {fileID: 11400000, guid: 83094985f89a7c848981bc4d44482ed0, type: 2}
+  - {fileID: 11400000, guid: dc0b05c9949e9cb43a5468af6d322e99, type: 2}
+  PlayerSeed: geer
+  Seed: 0
   GenBorders: 1
-  scale: 20
+  Desert: 0
+  Regen: 0
 --- !u!114 &1431879871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,9 +748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c338609d97911b342b06f85e011ad24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pubseed: hello
-  seed: 0
-  regen: 1
 --- !u!1 &1555276421
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,38 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class DesertGeneration : MonoBehaviour
 {   
 
-    
-    // Start is called before the first frame update
-    void Start(){
-        ulong Worldseed = WorldManager.GetComponent<SeedGenerator>().seed;
-        Random.InitState((int)(Worldseed));
-    }
+    public static int[,] GenerateDesert(int[,] map, List<int> TerrainHeights){
+        
+        try{
+            int DesertLength = Random.Range(25,45);
+            int DesertStart = Random.Range(0,map.GetUpperBound(0)-1);
 
-    public static int[,] GenerateDesert(int startHeight, int worldLength, int[,] map){
-        int DesertLength = Random.Range(25,45);
-        for (int x = 7; x < (DesertLength); x++){
-            for (int y = startHeight-Random.Range(10,13); y <= startHeight+Random.Range(-1,2); y++){
-                map[x,y] = 4;
+            for (int x = DesertStart; x < (DesertStart+DesertLength); x++){
+
+                for (int y = TerrainHeights[x]-Random.Range(20,35); y <= TerrainHeights[x]; y++){
+                    map[x,y] = 4;
+                }
+
             }
+            
         }
+
+        finally{
+            print("");
+        }
+
         return map;
     }
 
     public static int[,] GenerateCacti(int[,] map){
         int NumCacti = Random.Range(2,6);
 
+        try{
+            for (int x = 0; x < map.GetUpperBound(0); x++){
+                    for (int y = 0; y <= map.GetUpperBound(1); y++){
+
+                    if ((map[x,y-1] == 4) && (map[x,y+1] == -1)){
+
+                        for (int c = 0; c < Random.Range(2,3); c++){
+                            map[x,y+c] = Random.Range(5,6);
+                        }
+                    }
+                    }
+                }
+
+        }
+        finally{
+            print("");
+        }
         return map;
     }
 
-    //Seed
-    public GameObject WorldManager;
-    private ulong Worldseed;
-    
-
-    
 }

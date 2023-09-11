@@ -147,8 +147,8 @@ public class NewWorldGen : MonoBehaviour
 
     void Start()
     {
-        ulong Gameseed = GameObject.Find("Landscape (1)").GetComponent<SeedGenerator>().seed;
-        Random.InitState((int) Gameseed);
+        //ulong Gameseed = GameObject.Find("Landscape (1)").GetComponent<SeedGenerator>().seed;
+       // Random.InitState((int) Gameseed);
 
         world = GenerateArray(worldSize);
         GenerateTerrainPerlin(world);
