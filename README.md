@@ -1,10 +1,12 @@
 # Lands and Legacy
 ## No Adventures the Same...
+### Features
 * Procedurally Generated Worlds
 * Crafting System
-* Multiplayer
-* Combat
+* Local and Online Multiplayer
+* Sea, land and air combat
 
+![Lands and Legacy](https://github.com/OGD311/LandsAndLegacy/assets/114223604/ab25071d-c412-44da-ab12-efb7ca285cd2)
 
 
 
