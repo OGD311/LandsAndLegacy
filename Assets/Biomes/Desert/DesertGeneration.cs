@@ -5,7 +5,7 @@ using UnityEngine;
 public class DesertGeneration : MonoBehaviour
 {   
 
-    public static int[,] GenerateDesert(int[,] map, List<int> TerrainHeights){
+    public static int[,] GenerateDesert(int[,] map){
         
         try{
             int DesertLength = Random.Range(25,45);
@@ -13,7 +13,7 @@ public class DesertGeneration : MonoBehaviour
 
             for (int x = DesertStart; x < (DesertStart+DesertLength); x++){
 
-                for (int y = TerrainHeights[x]-Random.Range(20,35); y <= TerrainHeights[x]; y++){
+                for (int y = x-Random.Range(20,35); y <= x-1; y++){
                     map[x,y] = 4;
                 }
 
@@ -22,7 +22,7 @@ public class DesertGeneration : MonoBehaviour
         }
 
         finally{
-            print("");
+            print("Failed");
         }
 
         return map;

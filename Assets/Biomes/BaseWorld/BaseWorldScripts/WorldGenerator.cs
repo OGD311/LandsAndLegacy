@@ -10,56 +10,61 @@ public class WorldGenerator : MonoBehaviour
     public int MapY;
     public Tilemap Tilemap;
     public Tile[] Tiles;
-    [SerializeField]
+
     public int[,] map;
+
+    public List<int> heights = new List<int>();
+
 
     //Seed
     public string PlayerSeed;
-    public int Seed;
-
-    //Lists
-    
-    private List<int> TerrainHeights;
-
 
     //Extras
     public bool GenBorders = true;
     public bool Desert = true;
     public bool Regen = false;
+    public int BorderSize = 8;
 
     
 
     public void WorldGen(){ 
         //Initialise Seed
-        Seed = SeedGenerator.GenerateSeed(PlayerSeed);
-        Random.InitState(Seed);
+        SeedGenerator.GenerateSeed(PlayerSeed);
 
 
         //Basic World
         int[,] map = new int[MapX+8,MapY+8]; // Initialise new integer array
+
         map = BaseWorldGen.GenerateBasic(map); // Basic Dirt + Stone world
-        (map, TerrainHeights) = TerrainTexture.Terrain(map);
+
+        map = TerrainTexture.Terrain(map); //Variation in height
        
-        map = CaveGeneration.GenerateCaves(map, TerrainHeights); //Generate Caves above + below surface
+        map = CaveGeneration.GenerateCaves(map); //Generate Caves above + below surface
+
+        heights = TerrainHeights.getHeights(map, heights);
 
         map = BaseWorldGen.GenerateGrass(map); // Add Grass Layer
 
-
+        
+        
 
         //Desert Biome Generation
         if (Desert == true){
             for (int i = 0; i < Random.Range(2,5); i++){
-                map = DesertGeneration.GenerateDesert(map,TerrainHeights); 
+                //map = DesertGeneration.GenerateDesert(map); 
                 //map = DesertGeneration.GenerateCacti(map);
             }
         }
 
+        //Border Generation
         if (GenBorders == true){
-            map = BaseWorldGen.GenerateBorders(map); // Render Borders last
+            map = BaseWorldGen.GenerateBorders(map, BorderSize); // Render Borders last
         }
 
         RenderUpdateWorld.RenderMap(map, Tilemap, Tiles);
+        print("World Generated!");
     }
+
 
 
     void Start(){
