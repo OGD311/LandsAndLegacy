@@ -8,10 +8,10 @@ public class WorldGenerator : MonoBehaviour
     //Base
     public int MapX;
     public int MapY;
-    public Tilemap Tilemap;
-    public Tile[] Tiles;
+    public static Tilemap Tilemap;
+    public static Tile[] Tiles;
 
-    public int[,] map;
+    public static int[,] map;
 
     public List<int> heights = new List<int>();
 
@@ -33,7 +33,7 @@ public class WorldGenerator : MonoBehaviour
 
 
         //Basic World
-        int[,] map = new int[MapX+8,MapY+8]; // Initialise new integer array
+        map = new int[MapX+8,MapY+8]; // Initialise new integer array
 
         map = BaseWorldGen.GenerateBasic(map); // Basic Dirt + Stone world
 
@@ -72,7 +72,6 @@ public class WorldGenerator : MonoBehaviour
     }
 
     void Update(){
-        
         if (Regen == true){
             Regen = false;
             WorldGen();

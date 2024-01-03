@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMining : MonoBehaviour
 {   
-      public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] tiles) {
+    public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] tiles) {
         Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y));
         print(Input.mousePosition.x);
@@ -23,24 +23,26 @@ public class PlayerMining : MonoBehaviour
         RenderUpdateWorld.UpdateMap(map,Tilemap,tiles);
     }
 
-    public int[,] world;
-    public Tilemap Tilemap;
-    public Tile[] WorldTiles;
+    public int[,] map;
+    public Tilemap WorldTilemap;
+    private Tile[] WorldTiles;
 
     public GameObject World;
 
     public int block = 0;
+
     //public GameObject PlayerCharacter; 
 
     void start(){
-        world = World.GetComponent<WorldGenerator>().map;
-        Tilemap = World.GetComponent<WorldGenerator>().Tilemap;
-        WorldTiles = World.GetComponent<WorldGenerator>().Tiles;
     }
 
     // Update is called once per frame
     void Update()
     {
+        map = WorldGenerator.map;
+        WorldTilemap = WorldGenerator.Tilemap;
+        WorldTiles = WorldGenerator.Tile;
+
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0){
             if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.Length){
                 block ++;
@@ -53,11 +55,11 @@ public class PlayerMining : MonoBehaviour
             }
         }
         else if (Input.GetMouseButtonDown(0)){
-            breakBlock(world,Tilemap,WorldTiles);
+            breakBlock(map,WorldTilemap,WorldTiles);
             
         }
         else if (Input.GetMouseButtonDown(1)){
-            placeBlock(world, block, Tilemap, WorldTiles);
+            placeBlock(map, block, WorldTilemap, WorldTiles);
             
         }
     }
