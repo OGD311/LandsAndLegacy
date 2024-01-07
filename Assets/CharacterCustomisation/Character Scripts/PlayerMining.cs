@@ -5,27 +5,27 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMining : MonoBehaviour
 {   
-    public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] tiles) {
+    public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] Tiles) {
         Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y));
         print(Input.mousePosition.x);
         print(worldPoint.x+" "+worldPoint.y);
         map[worldPoint.x,worldPoint.y] = -1;
 
-        RenderUpdateWorld.UpdateMap(map,Tilemap,tiles);
+        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles);
     }
 
-    public static void placeBlock(int[,] map, int block, Tilemap Tilemap, Tile[] tiles){
+    public static void placeBlock(int[,] map, int block, Tilemap Tilemap, Tile[] Tiles){
         Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y));
         map[worldPoint.x,worldPoint.y] = block;
         print(worldPoint.x+" "+worldPoint.y);
-        RenderUpdateWorld.UpdateMap(map,Tilemap,tiles);
+        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles);
     }
 
     public int[,] map;
     public Tilemap WorldTilemap;
-    private Tile[] WorldTiles;
+    public Tile[] WorldTiles;
 
     public GameObject World;
 
@@ -40,8 +40,7 @@ public class PlayerMining : MonoBehaviour
     void Update()
     {
         map = WorldGenerator.map;
-        WorldTilemap = WorldGenerator.Tilemap;
-        WorldTiles = WorldGenerator.Tile;
+
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0){
             if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.Length){

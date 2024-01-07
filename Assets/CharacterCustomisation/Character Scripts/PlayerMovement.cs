@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour{
     public float sprintMult = 1.25f;
     public float dashSpeed = 5.5f;
 
+    //Turn Loading screen off
+    public bool Loaded = false;
+    private GameObject screen;
 
     //Jumping
     public bool canJump;
@@ -21,7 +24,6 @@ public class PlayerMovement : MonoBehaviour{
     
 
     void Start (){
-        Ray2D ray = new Ray2D(transform.position, direction);
         rb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour{
 
         //Allow Jumping if grounded
         if (canJump == true && Input.GetAxisRaw("Vertical") > 0){
-            movement.y = 1;
+            rb2D.AddForce(new Vector2(0f, jumpHeight));
         }
 
     }
@@ -42,6 +44,13 @@ public class PlayerMovement : MonoBehaviour{
     //Can jump if touching ground or other object
     void OnCollisionEnter2D(){
         canJump = true;
+
+        if (Loaded == false){
+            screen = GameObject.Find("LOADING");
+            screen.SetActive(false);
+            Loaded = true;
+        }
+
     }
 
     void OnCollisionExit2D(){

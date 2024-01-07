@@ -19,6 +19,7 @@ public class SeedGenerator : MonoBehaviour
             }
 
             foreach (char C in publicSeed){
+                print(C);
                 seedConversion = seedConversion + (System.Convert.ToInt32(C)); //Convert each character from a 'char' to a 32bit integer
             }
 
@@ -32,7 +33,9 @@ public class SeedGenerator : MonoBehaviour
            
         }
 
+        print(seedConversion);
         seed = int.Parse(seedConversion); //Convert the seed to an integer
+        print(seed);
         Random.InitState(seed); //Initialise random with the seed
     }
 }

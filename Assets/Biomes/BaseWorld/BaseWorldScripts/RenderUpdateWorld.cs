@@ -5,48 +5,30 @@ using UnityEngine.Tilemaps;
 
 public class RenderUpdateWorld : MonoBehaviour
 {
-    public static void RenderMap(int[,] map, Tilemap Tilemap, Tile[] Tiles){
+    public static void RenderUpdateMap(int[,] map, Tilemap Tilemap, Tile[] Tiles, bool wipeAll = false){
+        
+        if (wipeAll == true){ // Ensure that map only cleared if necessary
+            Tilemap.ClearAllTiles();  //Clear the map (ensures we dont overlap)
+        }
 
-        Tilemap.ClearAllTiles();  //Clear the map (ensures we dont overlap)
-    
-        Tile Tile = null;  //Initialise Tile with Null value
+        Tile Tile = null;  // Initialise Tile with Null value
 
-        //Loop through the width of the map
-        for (int x = 0; x < map.GetUpperBound(0); x++){
-            //Loop through the height of the map
-            for (int y = 0; y < map.GetUpperBound(1); y++){
+        
+        for (int x = 0; x < map.GetUpperBound(0); x++){ // Loop through the width of the map
+            
+            for (int y = 0; y < map.GetUpperBound(1); y++){ // Loop through the height of the map
 
                 if (map[x, y] == -1){
-                    Tile = null; //Set empty array value to Null tile
+                    Tile = null; // Set empty array value to Null tile
                 }
                 else{
                     Tile = Tiles[((int) map[x,y])]; //Set array values to relevant tile
                 }
 
-                Tilemap.SetTile(new Vector3Int(x,y,0), Tile); //redraw tile
+                Tilemap.SetTile(new Vector3Int(x,y,0), Tile); // Redraw tile
             }
         }
 
     }
 
-    public static void UpdateMap(int[,] map, Tilemap Tilemap, Tile[] Tiles) //Takes in our map and Tilemap, setting null Tiles where needed
-    {
-        Tile Tile = null; //Initialise Tile with Null value
-   
-        //Loop through the width of the map
-        for (int x = 0; x < map.GetUpperBound(0); x++){
-            //Loop through the height of the map
-            for (int y = 0; y < map.GetUpperBound(1); y++){
-                
-                if (map[x, y] == -1){
-                    Tile = null; //Set empty array value to Null tile
-                }
-                else{
-                    Tile = Tiles[((int) map[x,y])];  //Set array values to relevant tile
-                }
-
-                Tilemap.SetTile(new Vector3Int(x,y,0), Tile); //redraw tile
-            }
-        }
-    }
 }

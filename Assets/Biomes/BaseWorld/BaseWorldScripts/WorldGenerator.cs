@@ -8,8 +8,8 @@ public class WorldGenerator : MonoBehaviour
     //Base
     public int MapX;
     public int MapY;
-    public static Tilemap Tilemap;
-    public static Tile[] Tiles;
+    public Tilemap Tilemap;
+    public Tile[] Tiles;
 
     public static int[,] map;
 
@@ -40,19 +40,21 @@ public class WorldGenerator : MonoBehaviour
         map = TerrainTexture.Terrain(map); //Variation in height
        
         map = CaveGeneration.GenerateCaves(map); //Generate Caves above + below surface
-
-        heights = TerrainHeights.getHeights(map, heights);
-
+        
         map = BaseWorldGen.GenerateGrass(map); // Add Grass Layer
 
-        
-        
+
+
+
+        // Biome Generation
+
+        heights = TerrainHeights.getHeights(map, heights); //Get the current heights of each column
+
 
         //Desert Biome Generation
         if (Desert == true){
             for (int i = 0; i < Random.Range(2,5); i++){
-                //map = DesertGeneration.GenerateDesert(map); 
-                //map = DesertGeneration.GenerateCacti(map);
+                map = DesertGeneration.GenerateDesert(map, heights); 
             }
         }
 
@@ -61,7 +63,7 @@ public class WorldGenerator : MonoBehaviour
             map = BaseWorldGen.GenerateBorders(map, BorderSize); // Render Borders last
         }
 
-        RenderUpdateWorld.RenderMap(map, Tilemap, Tiles);
+        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles, true);
         print("World Generated!");
     }
 
@@ -71,25 +73,58 @@ public class WorldGenerator : MonoBehaviour
         WorldGen();
     }
 
-    void Update(){
-        if (Regen == true){
-            Regen = false;
-            WorldGen();
-        }
-    }
 }
 
 
-// if (worldSize == 1){
-//             mapSizeX = 1000;
-//             mapSizeY = 200;
-//         }
-//         else if (worldSize == 2){
-//             mapSizeX = 2500;
-//             mapSizeY = 300;
-//         }
 
-//         else if (worldSize == 3){
-//             mapSizeX = 5000;
-//             mapSizeY = 500;
-//         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // void Update(){
+    //     if (Regen == true){
+    //         Regen = false;
+    //         WorldGen();
+    //     }
+    // }
+
+
+    // private (int, int) WorldSizeToMapSize(int worldSize){
+    //     int mapX, mapY;
+    //     switch (worldSize){
+    //         case 0:
+    //             mapX = 1500;
+    //             mapY = 750;
+    //             break;
+    //         case 1:
+    //             mapX = 3000;
+    //             mapY = 1500;
+    //             break;
+    //         case 2:
+    //             mapX = 6000;
+    //             mapY = 3000;
+    //             break;
+    //         default:
+    //             mapX = 1500;
+    //             mapY = 750;
+    //             break;
+    //     }
+
+    //     return (mapX, mapY);
+    // }
+
+
