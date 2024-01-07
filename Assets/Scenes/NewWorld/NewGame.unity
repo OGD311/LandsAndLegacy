@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 188384151}
   - component: {fileID: 188384152}
   m_Layer: 5
-  m_Name: WorldSize
+  m_Name: WorldSizeInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

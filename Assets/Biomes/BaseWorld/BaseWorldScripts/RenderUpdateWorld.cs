@@ -5,14 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class RenderUpdateWorld : MonoBehaviour
 {
-    public static void RenderUpdateMap(int[,] map, Tilemap Tilemap, Tile[] Tiles, bool wipeAll = false){
+    public static void RenderMap(int[,] map, Tilemap Tilemap, Tile[] Tiles){
         
-        if (wipeAll == true){ // Ensure that map only cleared if necessary
-            Tilemap.ClearAllTiles();  //Clear the map (ensures we dont overlap)
-        }
+        Tilemap.ClearAllTiles();  //Clear the map (ensures we dont overlap)
 
         Tile Tile = null;  // Initialise Tile with Null value
-
         
         for (int x = 0; x < map.GetUpperBound(0); x++){ // Loop through the width of the map
             
@@ -29,6 +26,18 @@ public class RenderUpdateWorld : MonoBehaviour
             }
         }
 
+    }
+
+    public static void UpdateMap(int[,] map, Tilemap Tilemap, Tile[] Tiles, int blockX, int blockY){
+        Tile Tile = null;  // Initialise Tile with Null value
+        if (map[blockX, blockY] != -1){
+            Tile = Tiles[((int) map[blockX,blockY])];
+        }
+        else{
+            Tile = null;
+        }
+        Tilemap.SetTile(new Vector3Int(blockX,blockY,0), Tile); // Redraw tile
+            
     }
 
 }

@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 124461597}
   - component: {fileID: 124461598}
   - component: {fileID: 124461599}
-  - component: {fileID: 124461603}
   - component: {fileID: 124461604}
   - component: {fileID: 124461605}
+  - component: {fileID: 124461606}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124461596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3380737, y: 45.49797, z: 0.011296272}
+  m_LocalPosition: {x: -1.7, y: 153.7, z: 0.011296272}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -233,32 +233,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &124461603
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124461596}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.000008583069, y: -0.06301832}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6666667, y: 1}
-    newSize: {x: 0.6666667, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  serializedVersion: 2
-  m_Size: {x: 0.41942787, y: 0.87413883}
-  m_EdgeRadius: 0
 --- !u!114 &124461604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,12 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  jumpHeight: 3
+  jumpHeight: 7
   sprintMult: 1.25
-  dashSpeed: 5.5
-  Loaded: 0
   canJump: 0
-  direction: {x: 0, y: 0}
 --- !u!114 &124461605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +269,102 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f95540563b04cc344b2a321e13a8e291, type: 2}
   - {fileID: 11400000, guid: a6c56985ada224e4494fe9158f8804fb, type: 2}
   - {fileID: 11400000, guid: 83094985f89a7c848981bc4d44482ed0, type: 2}
+  - {fileID: 11400000, guid: dc0b05c9949e9cb43a5468af6d322e99, type: 2}
+  - {fileID: 11400000, guid: 5d6ddd1c8a4757f41b22007b0452ae68, type: 2}
+  - {fileID: 11400000, guid: 450e5d2ae438a714896a7ec67f9076b6, type: 2}
+  - {fileID: 11400000, guid: 8d50214c5dc6a7141af58cda7c3e2118, type: 2}
+  - {fileID: 11400000, guid: 60e26216021b0124bbadd29d39d89029, type: 2}
+  - {fileID: 11400000, guid: 2e4fff0bb3649e3419e57d60bddbaa4b, type: 2}
   World: {fileID: 1431879863}
-  block: 0
+  block: 1
+--- !u!60 &124461606
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124461596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6666667, y: 1}
+    newSize: {x: 0.6666667, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.033447266, y: -0.25547284}
+      - {x: 0.030873619, y: -0.48963422}
+      - {x: 0.022593182, y: -0.48963422}
+      - {x: 0.021769207, y: -0.4908956}
+      - {x: 0.021331787, y: -0.5}
+      - {x: 0.18700156, y: -0.5}
+      - {x: 0.1869812, y: -0.4900513}
+      - {x: 0.17310588, y: -0.47441614}
+      - {x: 0.13497926, y: -0.43756104}
+      - {x: 0.1327758, y: -0.436238}
+      - {x: 0.10499064, y: -0.43667606}
+      - {x: 0.106292725, y: -0.25671387}
+      - {x: 0.115336105, y: -0.2543742}
+      - {x: 0.124521896, y: -0.24519858}
+      - {x: 0.13568115, y: -0.22285971}
+      - {x: 0.1396993, y: -0.10598755}
+      - {x: 0.1536967, y: -0.10611981}
+      - {x: 0.1642089, y: -0.12478573}
+      - {x: 0.19742839, y: -0.12416585}
+      - {x: 0.20674643, y: -0.11546835}
+      - {x: 0.20798747, y: -0.027008057}
+      - {x: 0.19928996, y: -0.016459147}
+      - {x: 0.16900635, y: -0.016459148}
+      - {x: 0.14814648, y: -0.03570492}
+      - {x: 0.13815308, y: -0.03592936}
+      - {x: 0.14322917, y: 0.044270836}
+      - {x: 0.12760417, y: 0.059895836}
+      - {x: 0.122395836, y: 0.075520836}
+      - {x: 0.109375, y: 0.09635417}
+      - {x: 0.109375, y: 0.11197917}
+      - {x: 0.13020834, y: 0.14322917}
+      - {x: 0.13020834, y: 0.26302084}
+      - {x: 0.13802084, y: 0.265625}
+      - {x: 0.13541667, y: 0.30989584}
+      - {x: 0.08854167, y: 0.3463542}
+      - {x: 0.0234375, y: 0.3776042}
+      - {x: -0.09635417, y: 0.3776042}
+      - {x: -0.1015625, y: 0.37239584}
+      - {x: -0.11979167, y: 0.3697917}
+      - {x: -0.140625, y: 0.35677084}
+      - {x: -0.1640625, y: 0.3385417}
+      - {x: -0.1953125, y: 0.2890625}
+      - {x: -0.20833334, y: 0.2734375}
+      - {x: -0.20833334, y: 0.20833334}
+      - {x: -0.19791667, y: 0.1953125}
+      - {x: -0.17708334, y: 0.18229167}
+      - {x: -0.17200725, y: 0.12624106}
+      - {x: -0.18653361, y: 0.1045634}
+      - {x: -0.20140584, y: 0.091278076}
+      - {x: -0.21059164, y: 0.0710551}
+      - {x: -0.211202, y: -0.203125}
+      - {x: -0.20043945, y: -0.20772299}
+      - {x: -0.20078532, y: -0.24355061}
+      - {x: -0.19112141, y: -0.2541097}
+      - {x: -0.17885336, y: -0.25498456}
+      - {x: -0.17875163, y: -0.4904887}
+      - {x: -0.18834431, y: -0.49180096}
+      - {x: -0.18873088, y: -0.4921875}
+      - {x: -0.19004312, y: -0.49955243}
+      - {x: -0.03262329, y: -0.5}
+      - {x: -0.032206215, y: -0.49092612}
+      - {x: -0.08728027, y: -0.4397278}
+      - {x: -0.11561076, y: -0.44138592}
 --- !u!1 &404877195
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,10 +418,9 @@ MonoBehaviour:
   Tilemap: {fileID: 0}
   Tiles: []
   heights: 
+  WorldName: 
   PlayerSeed: 
-  GenBorders: 0
-  Desert: 1
-  Regen: 0
+  WorldSize: 0
   BorderSize: 8
 --- !u!114 &404877198
 MonoBehaviour:
@@ -1175,11 +1239,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6c56985ada224e4494fe9158f8804fb, type: 2}
   - {fileID: 11400000, guid: 83094985f89a7c848981bc4d44482ed0, type: 2}
   - {fileID: 11400000, guid: dc0b05c9949e9cb43a5468af6d322e99, type: 2}
+  - {fileID: 11400000, guid: 5d6ddd1c8a4757f41b22007b0452ae68, type: 2}
+  - {fileID: 11400000, guid: 450e5d2ae438a714896a7ec67f9076b6, type: 2}
+  - {fileID: 11400000, guid: 8d50214c5dc6a7141af58cda7c3e2118, type: 2}
+  - {fileID: 11400000, guid: 60e26216021b0124bbadd29d39d89029, type: 2}
+  - {fileID: 11400000, guid: 2e4fff0bb3649e3419e57d60bddbaa4b, type: 2}
+  - {fileID: 11400000, guid: bbe56c5d4033b3347a043ef618d681a8, type: 2}
   heights: 
+  WorldName: 
   PlayerSeed: Potato
-  GenBorders: 1
-  Desert: 1
-  Regen: 0
+  WorldSize: 0
   BorderSize: 8
 --- !u!50 &1431879872
 Rigidbody2D:

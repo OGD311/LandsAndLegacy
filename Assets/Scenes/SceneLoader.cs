@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class SceneLoader : MonoBehaviour
 {
-    private GameObject Loading;
-    private GameObject Menu;
-
     void Start (){
         Loading = GameObject.Find("LOADING");
         Menu = GameObject.Find("Menu");
+        worldNameInput = GameObject.Find("WorldNameInput").GetComponent<TMP_InputField>();
+        playerSeedInput = GameObject.Find("SeedInput").GetComponent<TMP_InputField>();
+        worldSizeSlider = GameObject.Find("WorldSizeInput").GetComponent<Slider>();
     }
 
     public void LoadScene(string sceneName) //Public procedure
@@ -25,9 +27,20 @@ public class SceneLoader : MonoBehaviour
         print("Exiting..."); //Debug log to check code works
     }
 
+    // Make a new Game world
+    private GameObject Loading;
+    private GameObject Menu;
+    private TMP_InputField worldNameInput;
+    private TMP_InputField playerSeedInput;
+    private Slider worldSizeSlider;
+    
+
     public void NewGame(){
         Menu.SetActive(false);
         Loading.SetActive(true);
+        PlayerPrefs.SetString("worldName", worldNameInput.text);
+        PlayerPrefs.SetString("playerSeed", playerSeedInput.text);
+        PlayerPrefs.SetInt("worldSize", (int)(worldSizeSlider.value));
         LoadScene("Game");
     }
 }

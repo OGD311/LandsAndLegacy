@@ -5,36 +5,27 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMining : MonoBehaviour
 {   
-    public static void breakBlock(int[,] map, Tilemap Tilemap, Tile[] Tiles) {
-        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y));
-        print(Input.mousePosition.x);
+    public static void setBlock(int[,] map, int block, Tilemap Tilemap, Tile[] Tiles){
+        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Get mouse coordinates in the world
+        var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y)); // Get coordinates on a 2d scale
+        if (block != -1 && map[worldPoint.x,worldPoint.y] == -1){
+            map[worldPoint.x,worldPoint.y] = block; //set coordinate to block
+        }
+        else if (block == -1){
+            map[worldPoint.x,worldPoint.y] = -1;
+        }
+        
         print(worldPoint.x+" "+worldPoint.y);
-        map[worldPoint.x,worldPoint.y] = -1;
-
-        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles);
-    }
-
-    public static void placeBlock(int[,] map, int block, Tilemap Tilemap, Tile[] Tiles){
-        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var worldPoint = new Vector2Int((int)(mousePoint.x), (int)(mousePoint.y));
-        map[worldPoint.x,worldPoint.y] = block;
-        print(worldPoint.x+" "+worldPoint.y);
-        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles);
+        RenderUpdateWorld.UpdateMap(map, Tilemap, Tiles, worldPoint.x, worldPoint.y); //Update the worldmap
     }
 
     public int[,] map;
     public Tilemap WorldTilemap;
     public Tile[] WorldTiles;
-
     public GameObject World;
 
-    public int block = 0;
+    public int block = 1;
 
-    //public GameObject PlayerCharacter; 
-
-    void start(){
-    }
 
     // Update is called once per frame
     void Update()
@@ -43,22 +34,22 @@ public class PlayerMining : MonoBehaviour
 
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0){
-            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.Length){
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.Length-1){ // Increase the current block on scroll up
                 block ++;
-                print(block);
+                print(WorldTiles[block]);
             }
-            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0 && block > 0){
+            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0 && block > 1){ // Decrease the current block on scroll down (lower end limit is 1 as 0 is worldborder)
                 block --;
-                print(block);
+                print(WorldTiles[block]);
                 
             }
         }
-        else if (Input.GetMouseButtonDown(0)){
-            breakBlock(map,WorldTilemap,WorldTiles);
+        else if (Input.GetMouseButtonDown(0)){ // Right click
+            setBlock(map, -1, WorldTilemap, WorldTiles); // Place null block (air)
             
         }
-        else if (Input.GetMouseButtonDown(1)){
-            placeBlock(map, block, WorldTilemap, WorldTiles);
+        else if (Input.GetMouseButtonDown(1)){ // Left click
+            setBlock(map, block, WorldTilemap, WorldTiles); // Place current selected block
             
         }
     }

@@ -2,84 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour{
-
-    //MovementVariables
+public class PlayerMovement : MonoBehaviour
+{
+    // Movement Variables
     public float moveSpeed = 10f;
     public float jumpHeight = 3.0f;
     public float sprintMult = 1.25f;
-    public float dashSpeed = 5.5f;
 
-    //Turn Loading screen off
-    public bool Loaded = false;
-    private GameObject screen;
-
-    //Jumping
+    // Jumping
     public bool canJump;
     private Rigidbody2D rb2D;
 
-    //Vector that stores movement direction
-    Vector2 movement;
-    public Vector2 direction = new Vector2(0, -0.5f);
-    
+    // Loaded Screen
+    private GameObject screen;
+    private bool isLoaded = false;
 
-    void Start (){
-        rb2D = GetComponent<Rigidbody2D>();
+    private void Start()
+    {
+        rb2D = GetComponent<Rigidbody2D>(); // Get Rigidbody
+        screen = GameObject.Find("LOADING"); // Find the screen once and store it
     }
 
-
-    //Update called once per frame
-    void Update () {   
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-
-        movement.x = Input.GetAxisRaw("Horizontal");
-
-        //Allow Jumping if grounded
-        if (canJump == true && Input.GetAxisRaw("Vertical") > 0){
-            rb2D.AddForce(new Vector2(0f, jumpHeight));
+    private void Update()
+    {
+        // Check for jump input
+        if (canJump && Input.GetButtonDown("Jump")){ // Use GetButtonDown for better input handling
+            rb2D.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            //canJump = false; // Reset canJump to prevent multi-jumping
         }
-
     }
 
-    //Can jump if touching ground or other object
-    void OnCollisionEnter2D(){
+    private void FixedUpdate(){
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float sprintMultiplier = Input.GetButton("Sprint") ? sprintMult : 1.0f;
+
+        Vector2 movement = new Vector2(horizontalInput * moveSpeed * sprintMultiplier, rb2D.velocity.y);
+        rb2D.velocity = movement;
+
+        if (horizontalInput < 0){
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (horizontalInput > 0){
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         canJump = true;
 
-        if (Loaded == false){
-            screen = GameObject.Find("LOADING");
+        if (isLoaded == false)
+        {
             screen.SetActive(false);
-            Loaded = true;
+            isLoaded = true;
         }
-
     }
 
-    void OnCollisionExit2D(){
+    private void OnCollisionExit2D(Collision2D collision)
+    {
         canJump = false;
     }
-
-    void FixedUpdate()
-    {
-        float sprintMultiplier = 1.0f;
-        
-        if (Input.GetButton("Sprint") == true){
-            sprintMultiplier = sprintMult;
-        }
-
-        movement = new Vector2(movement.x*moveSpeed*sprintMultiplier, movement.y*jumpHeight);
-        movement *= Time.deltaTime;
-        transform.Translate(movement);
-
-        if (movement.x < 0) {
-            GetComponent<SpriteRenderer>().flipX = true; 
-        }
-        if (movement.x > 0) {
-            GetComponent<SpriteRenderer>().flipX = false; 
-        }
-
-    }
-
-
-
-
-
 }

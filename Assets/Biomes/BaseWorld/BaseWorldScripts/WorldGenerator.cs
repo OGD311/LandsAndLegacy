@@ -16,13 +16,12 @@ public class WorldGenerator : MonoBehaviour
     public List<int> heights = new List<int>();
 
 
-    //Seed
+    //World Details
+    public string WorldName;
     public string PlayerSeed;
+    public int WorldSize;
 
     //Extras
-    public bool GenBorders = true;
-    public bool Desert = true;
-    public bool Regen = false;
     public int BorderSize = 8;
 
     
@@ -39,7 +38,7 @@ public class WorldGenerator : MonoBehaviour
 
         map = TerrainTexture.Terrain(map); //Variation in height
        
-        map = CaveGeneration.GenerateCaves(map); //Generate Caves above + below surface
+        map = CaveGeneration.GenerateCaves(map, MapX); //Generate Caves above + below surface
         
         map = BaseWorldGen.GenerateGrass(map); // Add Grass Layer
 
@@ -47,31 +46,66 @@ public class WorldGenerator : MonoBehaviour
 
 
         // Biome Generation
-
         heights = TerrainHeights.getHeights(map, heights); //Get the current heights of each column
 
 
-        //Desert Biome Generation
-        if (Desert == true){
-            for (int i = 0; i < Random.Range(2,5); i++){
+            //Desert Biome Generation
+            for (int i = 0; i < Random.Range(3,6); i++){
                 map = DesertGeneration.GenerateDesert(map, heights); 
             }
-        }
+
+            //Forest Biome Generation
+            for (int i = 0; i < Random.Range(3,6); i++){
+                map = ForestGeneration.GenerateForest(map, heights); 
+            }
+
 
         //Border Generation
-        if (GenBorders == true){
-            map = BaseWorldGen.GenerateBorders(map, BorderSize); // Render Borders last
-        }
+        map = BaseWorldGen.GenerateBorders(map, BorderSize); // Render Borders 
 
-        RenderUpdateWorld.RenderUpdateMap(map, Tilemap, Tiles, true);
+
+        RenderUpdateWorld.RenderMap(map, Tilemap, Tiles);
         print("World Generated!");
     }
-
-
-
+    
     void Start(){
+        PlayerSeed = PlayerPrefs.GetString("playerSeed");
+        WorldName = PlayerPrefs.GetString("worldName");
+        WorldSize = PlayerPrefs.GetInt("worldSize");
+        (MapX, MapY) = WorldSizeToMapSize(WorldSize);
+        print((MapX, MapY));
         WorldGen();
     }
+
+
+
+
+    private (int, int) WorldSizeToMapSize(int worldSize){
+        int mapX;
+        int mapY;
+
+        switch (worldSize){
+            case 0:
+                mapX = 1000;
+                mapY = 300;
+                break;
+            case 1:
+                mapX = 1500;
+                mapY = 450;
+                break;
+            case 2:
+                mapX = 2000;
+                mapY = 600;
+                break;
+            default:
+                mapX = 1500;
+                mapY = 450;
+                break;
+        }
+
+        return (mapX, mapY);
+    }
+
 
 }
 
