@@ -21,35 +21,39 @@ public class PlayerMining : MonoBehaviour
 
     public int[,] map;
     public Tilemap WorldTilemap;
-    public Tile[] WorldTiles;
+    private Tile[] Tiles;
     public GameObject World;
 
     public int block = 1;
+
+    void Start(){
+    }
 
 
     // Update is called once per frame
     void Update()
     {
         map = WorldGenerator.map;
+        Tiles = WorldGenerator.WorldTiles;
 
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0){
-            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= WorldTiles.Length-1){ // Increase the current block on scroll up
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && block <= (Tiles.Length-2)){ // Increase the current block on scroll up
                 block ++;
-                print(WorldTiles[block]);
+                print(Tiles[block]);
             }
             else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0 && block > 1){ // Decrease the current block on scroll down (lower end limit is 1 as 0 is worldborder)
                 block --;
-                print(WorldTiles[block]);
+                print(Tiles[block]);
                 
             }
         }
         else if (Input.GetMouseButtonDown(0)){ // Right click
-            setBlock(map, -1, WorldTilemap, WorldTiles); // Place null block (air)
+            setBlock(map, -1, WorldTilemap, Tiles); // Place null block (air)
             
         }
         else if (Input.GetMouseButtonDown(1)){ // Left click
-            setBlock(map, block, WorldTilemap, WorldTiles); // Place current selected block
+            setBlock(map, block, WorldTilemap, Tiles); // Place current selected block
             
         }
     }

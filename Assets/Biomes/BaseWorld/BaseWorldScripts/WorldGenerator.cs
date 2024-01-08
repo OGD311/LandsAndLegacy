@@ -6,10 +6,12 @@ using UnityEngine.Tilemaps;
 public class WorldGenerator : MonoBehaviour
 {   
     //Base
-    public int MapX;
-    public int MapY;
+    public int MapX; // X Coordinate    
+    public int MapY; // Y Coordinate
     public Tilemap Tilemap;
-    public Tile[] Tiles;
+
+    public Tile[] Tiles; //Tiles used to represent different blocks
+    public static Tile[] WorldTiles; // Static Version of Tiles so the same can be used across multiple files
 
     public static int[,] map;
 
@@ -69,6 +71,7 @@ public class WorldGenerator : MonoBehaviour
     }
     
     void Start(){
+        WorldTiles = Tiles; //Initiate WorldTiles Static
         PlayerSeed = PlayerPrefs.GetString("playerSeed");
         WorldName = PlayerPrefs.GetString("worldName");
         WorldSize = PlayerPrefs.GetInt("worldSize");

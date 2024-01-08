@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canJump = true;
 
-        if (isLoaded == false)
+        if (isLoaded == false) 
         {
             screen.SetActive(false);
             isLoaded = true;
