@@ -14,13 +14,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2D;
 
     // Loaded Screen
-    private GameObject screen;
+    private GameObject Screen;
+    private GameObject UI;
     private bool isLoaded = false;
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>(); // Get Rigidbody
-        screen = GameObject.Find("LOADING"); // Find the screen once and store it
+        Screen = GameObject.Find("LOADING"); // Find the screen once and store it
+        UI = GameObject.Find("PlayerUI");
     }
 
     private void Update()
@@ -54,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (isLoaded == false) 
         {
-            screen.SetActive(false);
+            Screen.SetActive(false);
+            UI.SetActive(true);
             isLoaded = true;
         }
     }
