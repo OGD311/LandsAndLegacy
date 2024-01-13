@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject Screen;
     private GameObject UI;
     private bool isLoaded = false;
+    
 
     private void Start()
     {
@@ -52,18 +53,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        canJump = true;
+        if (collision.gameObject.name == "World"){
+            canJump = false;
 
-        if (isLoaded == false) 
-        {
-            Screen.SetActive(false);
-            UI.SetActive(true);
-            isLoaded = true;
+            if (isLoaded == false) 
+            {
+                Screen.SetActive(false);
+                UI.SetActive(true);
+                isLoaded = true;
+            }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        canJump = false;
+    private void OnCollisionExit2D(Collision2D collision){
+        if (collision.gameObject.name == "World"){
+            canJump = false;
+        }
     }
 }

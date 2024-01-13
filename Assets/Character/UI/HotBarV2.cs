@@ -28,7 +28,6 @@ public class HotBarV2 : MonoBehaviour
     void Update(){
         CurTile = GameObject.Find("PlayerCharacter").GetComponent<PlayerMining>().block;
         CurTile = Mathf.Clamp(CurTile,0,HotBarLimit);
-        print(CurTile);
         Tiles = WorldGenerator.WorldTiles;
         FillHotbar();
         LoadTileName(Tiles[CurTile]);
@@ -55,7 +54,7 @@ public class HotBarV2 : MonoBehaviour
         curItem = Items.transform.GetChild(HotbarPosition-1).gameObject;
         curItem.GetComponent<Image>().color = new Color32(255,255,255,255);
         curItem.GetComponent<RectTransform>().sizeDelta = new Vector2(35,35);
-    }
+    } 
 
     void LoadTileName(Tile tile){
         string tileName = (tile.name);
