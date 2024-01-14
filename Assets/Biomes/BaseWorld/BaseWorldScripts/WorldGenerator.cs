@@ -94,15 +94,15 @@ public class WorldGenerator : MonoBehaviour
                 break;
             case 1:
                 mapX = 1500;
-                mapY = 450;
+                mapY = 400;
                 break;
             case 2:
                 mapX = 2000;
-                mapY = 600;
+                mapY = 500;
                 break;
             default:
                 mapX = 1500;
-                mapY = 450;
+                mapY = 400;
                 break;
         }
 
