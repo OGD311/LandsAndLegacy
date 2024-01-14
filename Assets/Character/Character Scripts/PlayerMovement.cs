@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>(); // Get Rigidbody
         Screen = GameObject.Find("LOADING"); // Find the screen once and store it
         UI = GameObject.Find("PlayerUI");
+        UI.SetActive(false);
     }
 
     private void Update()
@@ -51,23 +52,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "World"){
-            canJump = false;
+    private void OnCollisionStay2D(Collision2D collision){
+        canJump = true;
 
-            if (isLoaded == false) 
-            {
-                Screen.SetActive(false);
-                UI.SetActive(true);
-                isLoaded = true;
-            }
+        if (isLoaded == false) 
+        {
+            Screen.SetActive(false);
+            UI.SetActive(true);
+            isLoaded = true;
         }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision){
-        if (collision.gameObject.name == "World"){
-            canJump = false;
-        }
+        canJump = false;
     }
 }
