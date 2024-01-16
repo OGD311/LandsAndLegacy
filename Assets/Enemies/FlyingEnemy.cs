@@ -25,7 +25,7 @@ public class FlyingEnemy : MonoBehaviour{
         float curY = Enemy.transform.position.y;
 
         float distance = Mathf.Sqrt(Mathf.Pow(Px-curX,2) + Mathf.Pow(Py-curY,2));
-        if (distance > 400){
+        if (distance > 200){
             Destroy(Enemy);
         }
         moveTowards(Px,Py);
@@ -42,12 +42,6 @@ public class FlyingEnemy : MonoBehaviour{
         if (collision.gameObject == PlayerCharacter){
             GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(5);
         }
-
-        Vector2 bounceDirection = transform.position - collision.transform.position;
-        bounceDirection.Normalize();
-
-        // Apply the force
-        rb2D.AddForce(bounceDirection * 20); 
     }
 
 }
