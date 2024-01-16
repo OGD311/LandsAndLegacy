@@ -43,13 +43,11 @@ public class WalkingEnemy : MonoBehaviour{
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision){
-        if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(5);
-        }
-    }
-
     private void OnCollisionStay2D(Collision2D collision){
+        if (collision.gameObject == PlayerCharacter){
+            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.5f);
+        }
+
         if (collision.gameObject == GameObject.Find("World") && Random.Range(1,10) == 1){
             rb2D.velocity = new Vector2(rb2D.velocity.x, 5f);
         }

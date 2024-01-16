@@ -32,7 +32,6 @@ public class WorldGenerator : MonoBehaviour
         //Initialise Seed
         SeedGenerator.GenerateSeed(PlayerSeed);
 
-
         //Basic World
         map = new int[MapX+8,MapY+8]; // Initialise new integer array
 
@@ -77,7 +76,15 @@ public class WorldGenerator : MonoBehaviour
         WorldSize = PlayerPrefs.GetInt("worldSize");
         (MapX, MapY) = WorldSizeToMapSize(WorldSize);
         print((MapX, MapY));
-        WorldGen();
+        if (PlayerPrefs.GetInt("fromFile?") != 1){
+            print("NEW");
+            WorldGen();
+        }
+        else{
+            print("LOAD");
+            RenderUpdateWorld.RenderMap(map, Tilemap, Tiles);
+        }
+        
     }
 
 

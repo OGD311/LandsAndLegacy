@@ -38,9 +38,9 @@ public class FlyingEnemy : MonoBehaviour{
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision){
+    private void OnTriggerStay2D(Collider2D collision){
         if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(5);
+            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.1f);
         }
     }
 

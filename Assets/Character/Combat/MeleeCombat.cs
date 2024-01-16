@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeCombat : MonoBehaviour
-{
+public class MeleeCombat : MonoBehaviour{
     public int playerScore = 0;
     
-    void Update() { 
+    void FixedUpdate() { 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);

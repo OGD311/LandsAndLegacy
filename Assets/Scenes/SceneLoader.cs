@@ -16,8 +16,9 @@ public class SceneLoader : MonoBehaviour
         worldSizeSlider = GameObject.Find("WorldSizeInput").GetComponent<Slider>();
     }
 
-    public void LoadScene(string sceneName) //Public procedure
+    public static void LoadScene(string sceneName) //Public procedure
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName); //Load Scene from sceneName string
     }
 
@@ -41,6 +42,7 @@ public class SceneLoader : MonoBehaviour
         PlayerPrefs.SetString("worldName", worldNameInput.text);
         PlayerPrefs.SetString("playerSeed", playerSeedInput.text);
         PlayerPrefs.SetInt("worldSize", (int)(worldSizeSlider.value));
+        PlayerPrefs.SetInt("fromFile?", 0);
         LoadScene("Game");
     }
 }
