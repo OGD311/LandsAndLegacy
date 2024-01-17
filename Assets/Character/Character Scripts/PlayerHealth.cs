@@ -17,14 +17,14 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void Damage(float Damage){ // Update the health icon
-        print("Taking "+Damage+" Damage");
+        //print("Taking "+Damage+" Damage");
         health = health - Damage;
         health = Mathf.Clamp(health,0,100); // Clamp health between 100 (Full health) and 0 (Dead)
         HeartIcon.fillAmount = (health / 100); // Image fill amount is between 1 and 0 
     }
 
     public void Heal(float HealValue){
-        print("Taking "+HealValue+" Damage");
+        //print("Healing "+HealValue+" health");
         health = health + HealValue;
         health = Mathf.Clamp(health,0,100); // Clamp health between 100 (Full health) and 0 (Dead)
         HeartIcon.fillAmount = (health / 100); // Image fill amount is between 1 and 0

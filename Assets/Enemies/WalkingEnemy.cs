@@ -18,17 +18,17 @@ public class WalkingEnemy : MonoBehaviour{
 
     // Update is called once per frame
     void FixedUpdate(){
-        float Px = PlayerCharacter.transform.position.x;
-        float Py = PlayerCharacter.transform.position.y;
+        float Px = PlayerCharacter.transform.position.x; // Current Player X
+        float Py = PlayerCharacter.transform.position.y; // Current Player Y
 
-        float curX = Enemy.transform.position.x;
-        float curY = Enemy.transform.position.y;
+        float curX = Enemy.transform.position.x; // Current Enemy X
+        float curY = Enemy.transform.position.y; // Current Enemy Y
 
         float distance = Mathf.Sqrt(Mathf.Pow(Px-curX,2) + Mathf.Pow(Py-curY,2));
-        if (distance > 100){
+        if (distance > 100){ // Despawn enemy if far enough away
             Destroy(Enemy);
         }
-        moveTowards(Px,Py);
+        moveTowards(Px,Py); // Move towards player
         
     }
 
@@ -36,7 +36,7 @@ public class WalkingEnemy : MonoBehaviour{
         Vector2 direction = new Vector2(x - transform.position.x, 0).normalized;  // Only change in the X direction
         rb2D.velocity = new Vector2(direction.x * moveSpeed, rb2D.velocity.y);   // Preserve the current Y-axis velocity (gravity)
         if (direction.x < 0){
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Flip character based on player direction
         }
         else if (direction.x > 0){
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -45,10 +45,10 @@ public class WalkingEnemy : MonoBehaviour{
 
     private void OnCollisionStay2D(Collision2D collision){
         if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.5f);
+            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.5f); // Deal Damage to the player
         }
 
-        if (collision.gameObject == GameObject.Find("World") && Random.Range(1,10) == 1){
+        if (collision.gameObject == GameObject.Find("World") && Random.Range(1,10) == 1){ // Jump at random occasions
             rb2D.velocity = new Vector2(rb2D.velocity.x, 5f);
         }
     }

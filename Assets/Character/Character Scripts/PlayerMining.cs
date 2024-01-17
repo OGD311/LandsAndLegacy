@@ -11,7 +11,7 @@ public class PlayerMining : MonoBehaviour
         if (block != -1 && map[worldPoint.x,worldPoint.y] == -1){
             map[worldPoint.x,worldPoint.y] = block; //set coordinate to block
         }
-        else if (block == -1){
+        else if (block == -1 && map[worldPoint.x,worldPoint.y] != 0){
             map[worldPoint.x,worldPoint.y] = -1;
         }
         
@@ -48,7 +48,9 @@ public class PlayerMining : MonoBehaviour
                 
             }
         }
+
         else if (Input.GetMouseButtonDown(0)){ // Right click
+            print("break");
             setBlock(map, -1, WorldTilemap, Tiles); // Place null block (air)
             
         }

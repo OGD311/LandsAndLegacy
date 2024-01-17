@@ -18,17 +18,17 @@ public class FlyingEnemy : MonoBehaviour{
 
     // Update is called once per frame
     void FixedUpdate(){
-        float Px = PlayerCharacter.transform.position.x;
-        float Py = PlayerCharacter.transform.position.y;
+        float Px = PlayerCharacter.transform.position.x; // Current Player X
+        float Py = PlayerCharacter.transform.position.y; // Current Player Y
 
-        float curX = Enemy.transform.position.x;
-        float curY = Enemy.transform.position.y;
+        float curX = Enemy.transform.position.x; // Current Enemy X
+        float curY = Enemy.transform.position.y; // Current Enemy Y
 
         float distance = Mathf.Sqrt(Mathf.Pow(Px-curX,2) + Mathf.Pow(Py-curY,2));
-        if (distance > 200){
+        if (distance > 200){ // Despawn enemy if far enough away
             Destroy(Enemy);
         }
-        moveTowards(Px,Py);
+        moveTowards(Px,Py); // Move towards player
         
     }
 
@@ -40,7 +40,7 @@ public class FlyingEnemy : MonoBehaviour{
 
     private void OnTriggerStay2D(Collider2D collision){
         if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.1f);
+            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.1f); // Deal damage to the player 
         }
     }
 
