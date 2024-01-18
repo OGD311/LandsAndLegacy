@@ -40,7 +40,7 @@ public class FlyingEnemy : MonoBehaviour{
 
     private void OnTriggerStay2D(Collider2D collision){
         if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.1f); // Deal damage to the player 
+            GameObject.Find("Health").GetComponent<PlayerHealth>().UpdateHealth(-0.1f); // Deal damage to the player 
         }
     }
 
