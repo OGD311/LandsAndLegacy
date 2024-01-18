@@ -45,7 +45,7 @@ public class WalkingEnemy : MonoBehaviour{
 
     private void OnCollisionStay2D(Collision2D collision){
         if (collision.gameObject == PlayerCharacter){
-            GameObject.Find("Health").GetComponent<PlayerHealth>().Damage(0.5f); // Deal Damage to the player
+            GameObject.Find("Health").GetComponent<PlayerHealth>().UpdateHealth(-0.5f); // Deal Damage to the player
         }
 
         if (collision.gameObject == GameObject.Find("World") && Random.Range(1,10) == 1){ // Jump at random occasions
