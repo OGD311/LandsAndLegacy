@@ -54,7 +54,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision){
-        canJump = true;
+        foreach (ContactPoint2D contact in collision.contacts){
+        // Check if the collision is approximately at the bottom of the collider
+            if (contact.normal.y > 0.5f){
+                canJump = true;
+                break;
+            }
+        }
 
         if (isLoaded == false) 
         {

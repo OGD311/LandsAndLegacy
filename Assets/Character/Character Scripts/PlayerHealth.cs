@@ -17,7 +17,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void UpdateHealth(float amount){ // Update the health icon
-        health = health - amount;
+        health = health + amount;
+        print(amount);
         health = Mathf.Clamp(health,0,100); // Clamp health between 100 (Full health) and 0 (Dead)
         HeartIcon.fillAmount = (health / 100); // Image fill amount is between 1 and 0 
     }

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 124461604}
   - component: {fileID: 124461605}
   - component: {fileID: 124461606}
+  - component: {fileID: 124461607}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  jumpHeight: 7
+  jumpHeight: 5
   sprintMult: 1.25
   canJump: 0
 --- !u!114 &124461605
@@ -274,11 +275,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 124461596}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: efdc05c942023453a8c059ae2d006f2c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03532456, y: -0.062475324}
+  m_Offset: {x: -0.0085165575, y: -0.065110385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -289,8 +290,30 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3424479, y: 0.87504816}
+  m_Size: {x: 0.3846978, y: 0.84096944}
   m_EdgeRadius: 0
+--- !u!68 &124461607
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124461596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.18360907, y: -0.49818245}
+  - {x: 0.16631237, y: -0.49818248}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &174773012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,6 +2458,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779133503701828424, guid: 3a3cab448d9874e499c95e829f08d92a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779133503701828426, guid: 3a3cab448d9874e499c95e829f08d92a, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779133503701828426, guid: 3a3cab448d9874e499c95e829f08d92a, type: 3}
+      propertyPath: m_UsedByComposite
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8779133503701828429, guid: 3a3cab448d9874e499c95e829f08d92a, type: 3}

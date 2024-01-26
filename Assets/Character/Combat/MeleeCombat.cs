@@ -25,7 +25,7 @@ public class MeleeCombat : MonoBehaviour{
 
 
     private void OnTriggerStay2D(Collider2D collision){
-        if(collision.CompareTag("Enemy") && Input.GetKey(KeyCode.F)){
+        if(collision.CompareTag("Enemy") && Input.GetMouseButtonDown(0)){
             Destroy(collision.gameObject,0.2f);
             playerScore += 1;
         }

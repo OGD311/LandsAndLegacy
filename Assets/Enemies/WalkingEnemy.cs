@@ -35,10 +35,10 @@ public class WalkingEnemy : MonoBehaviour{
     void moveTowards(float x, float y){
         Vector2 direction = new Vector2(x - transform.position.x, 0).normalized;  // Only change in the X direction
         rb2D.velocity = new Vector2(direction.x * moveSpeed, rb2D.velocity.y);   // Preserve the current Y-axis velocity (gravity)
-        if (direction.x < 0){
+        if (direction.x <= 0.1){
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Flip character based on player direction
         }
-        else if (direction.x > 0){
+        else if (direction.x > 0.1){
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
